@@ -1,0 +1,410 @@
+:root {
+  color-scheme: dark;
+  --bg: #101111;
+  --panel: #191b1b;
+  --line: #343737;
+  --text: #f1f1e9;
+  --muted: #a5aaa6;
+  --yellow: #f5ed63;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+button,a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+main {
+  max-width: 1160px;
+  margin: auto;
+  padding: 32px 48px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 26px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.pac {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: var(--yellow);
+  border-radius: 50%;
+  clip-path: polygon(0 0,100% 0,100% 20%,50% 50%,100% 80%,100% 100%,0 100%);
+}
+
+.tag,.eyebrow,.number,.action,.bottom,footer {
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 1.3px;
+}
+
+.tag {
+  color: var(--muted);
+}
+
+section {
+  padding-top: 58px;
+}
+
+.eyebrow {
+  color: var(--yellow);
+  margin: 0 0 22px;
+}
+
+h1 {
+  font-size: clamp(48px,7vw,86px);
+  line-height: 1.02;
+  letter-spacing: -4px;
+  margin: 0 0 24px;
+  font-weight: 800;
+}
+
+h1 span {
+  color: var(--yellow);
+}
+
+.intro {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 34px;
+}
+
+.modes,.players {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.mode {
+  text-align: left;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 26px;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  transition: border-color .15s,transform .15s;
+}
+
+.mode:hover {
+  border-color: var(--yellow);
+  transform: translateY(-3px);
+}
+
+button:focus-visible,a:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 5px;
+}
+
+.number {
+  color: var(--muted);
+}
+
+.mode-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -.8px;
+}
+
+.mode-title span {
+  color: var(--yellow);
+}
+
+.description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.action {
+  color: var(--yellow);
+  margin-top: 7px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  padding-top: 24px;
+  font-size: 10px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--yellow);
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+footer {
+  margin-top: 56px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.ghosts {
+  display: flex;
+  gap: 10px;
+}
+
+.ghosts i {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 23px;
+  background: var(--color);
+  border-radius: 10px 10px 0 0;
+  clip-path: polygon(0 0,100% 0,100% 100%,75% 80%,50% 100%,25% 80%,0 100%);
+}
+
+.ghosts i:after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 5px;
+  width: 4px;
+  height: 5px;
+  background: #101111;
+  box-shadow: 7px 0 #101111;
+}
+
+.back {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 32px;
+}
+
+.player {
+  padding: 26px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.player h2 {
+  font-size: 22px;
+  margin: 0 0 18px;
+}
+
+.player p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.player-icon {
+  color: var(--yellow);
+  font-size: 28px;
+}
+
+.notice {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 24px 0;
+}
+
+.start {
+  background: var(--yellow);
+  border: 0;
+  border-radius: 8px;
+  color: #101111;
+  font-weight: bold;
+  padding: 16px 28px;
+}
+
+.start:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+[hidden] {
+  display: none!important;
+}
+
+@media(max-width:650px) {
+  main {
+    padding: 24px;
+  }
+  .tag {
+    display: none;
+  }
+  section {
+    padding-top: 40px;
+  }
+  h1 {
+    letter-spacing: -2.5px;
+  }
+  .modes,.players {
+    grid-template-columns: 1fr;
+  }
+  .bottom {
+    flex-direction: column;
+  }
+  .intro br {
+    display: none;
+  }
+  .mode {
+    padding: 24px;
+  }
+  footer {
+    margin-top: 36px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .mode {
+    transition: none;
+  }
+  .mode:hover {
+    transform: none;
+  }
+}
+
+.maze-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.maze-heading h2 {
+  font-size: 32px;
+  margin: 0 0 24px;
+}
+
+.maze-heading .eyebrow {
+  margin-bottom: 24px;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 546px;
+  margin: 0 auto 20px;
+  font: 11px monospace;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.scoreboard strong {
+  display: block;
+  color: var(--yellow);
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+#maze {
+  display: block;
+  width: 100%;
+  max-width: 546px;
+  aspect-ratio: 1;
+  margin: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+#maze-screen>.notice {
+  text-align: center;
+}
+
+/* Yellow arcade heading */
+#title {
+  font-family: "Press Start 2P", monospace;
+  color: #ffff00;
+  font-size: clamp(24px, 4.5vw, 48px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+#intro {
+    font-family: "Press Start 2P", monospace;
+    color: blue;
+    
+}
+
+.pixel-font {
+  font-family: "Press Start 2P", monospace;
+}
+
+.mute-toggle {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--yellow);
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.mute-toggle:hover {
+  border-color: var(--yellow);
+}
+
+.music-credit {
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.music-credit a {
+  color: var(--muted);
+}
+
+.music-credit a:hover {
+  color: var(--yellow);
+}
+
+footer {
+  gap: 20px;
+  flex-wrap: wrap;
+}
