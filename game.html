@@ -16,13 +16,16 @@
       <a class="brand" href="index.html" target="_top">
         <span class="pac" aria-hidden="true"></span>PACMAN
       </a>
-      <button
+      <div class="nav-controls">
+        <button id="exit-game" class="exit-game" type="button" hidden>Exit</button>
+        <button
         id="mute-toggle"
         class="mute-toggle"
         type="button"
         aria-label="Mute sound"
         aria-pressed="false"
-      >Mute</button>
+        >Mute</button>
+      </div>
     </header>
     <section id="home" aria-labelledby="title">
 
@@ -46,8 +49,11 @@
       <button id="maze-back" class="back">← Back to setup</button>
       <div class="maze-heading"><h2 id="maze-title" tabindex="-1">Maze</h2><span id="game-mode" class="eyebrow"></span></div>
       <div class="scoreboard"><span>PLAYER 1 <strong>0000</strong></span><span id="timer">TIME <strong>02:00</strong></span><span id="p2-score">PLAYER 2 <strong>0000</strong></span></div>
-      <canvas id="maze" role="img" aria-label="Static maze preview with pellets, four ghosts and player starting positions"></canvas>
-      <p class="notice">Maze preview. Movement and ghost behaviour will be added next.</p>
+      <div class="maze-board">
+        <canvas id="maze" role="img" aria-label="Static maze preview with pellets, four ghosts and player starting positions"></canvas>
+        <button id="play-maze" class="maze-play-button" type="button">PLAY</button>
+      </div>
+      <p id="maze-notice" class="notice">Maze preview. Press PLAY to expand it to your screen.</p>
     </section>
     <footer><span class="music-credit">
   Music:

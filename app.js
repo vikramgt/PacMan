@@ -117,11 +117,30 @@ document.querySelector('#next').addEventListener('click', () => {
   document.querySelector('#game-mode').textContent = selectedMode === 'single' ? 'SINGLE PLAYER' : 'TWO PLAYERS';
   document.querySelector('#p2-score').hidden = selectedMode === 'single';
   document.querySelector('#timer').hidden = selectedMode === 'single';
+  document.body.classList.remove('is-playing');
+  document.querySelector('#exit-game').hidden = true;
   drawMaze();
-  document.querySelector('#maze-title').focus();
+  document.querySelector('#play-maze').focus();
+});
+
+const playMazeButton = document.querySelector('#play-maze');
+const exitGameButton = document.querySelector('#exit-game');
+
+playMazeButton.addEventListener('click', () => {
+  document.body.classList.add('is-playing');
+  exitGameButton.hidden = false;
+  exitGameButton.focus();
+});
+
+exitGameButton.addEventListener('click', () => {
+  document.body.classList.remove('is-playing');
+  exitGameButton.hidden = true;
+  playMazeButton.focus();
 });
 
 document.querySelector('#maze-back').addEventListener('click', () => {
+  document.body.classList.remove('is-playing');
+  exitGameButton.hidden = true;
   document.querySelector('#maze-screen').hidden = true;
   setup.hidden = false;
   document.querySelector('#next').focus();

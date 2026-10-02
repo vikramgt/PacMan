@@ -530,3 +530,154 @@ footer {
     left: calc(50% - 32px);
   }
 }
+
+/* Game screen navigation and PLAY view. */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.exit-game {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.exit-game:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.maze-board {
+  position: relative;
+  width: min(100%, 546px);
+  margin: 0 auto;
+}
+
+.maze-board #maze {
+  width: 100%;
+}
+
+.maze-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 34px;
+  border: 2px solid var(--yellow);
+  border-radius: 10px;
+  background: rgb(16 17 17 / 88%);
+  color: var(--yellow);
+  font-family: "Press Start 2P", monospace;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgb(245 237 99 / 35%);
+}
+
+.maze-play-button:hover {
+  background: var(--yellow);
+  color: var(--bg);
+  box-shadow: 0 0 32px rgb(245 237 99 / 60%);
+}
+
+.is-playing {
+  overflow: hidden;
+}
+
+.is-playing main {
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  padding: 12px 24px;
+}
+
+.is-playing header {
+  flex: 0 0 auto;
+  padding-bottom: 12px;
+}
+
+.is-playing #maze-screen {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+}
+
+.is-playing #maze-back,
+.is-playing .maze-heading,
+.is-playing #maze-notice,
+.is-playing footer {
+  display: none;
+}
+
+.is-playing .scoreboard {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 10px;
+}
+
+.is-playing .maze-board {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-playing .maze-board #maze {
+  width: min(100%, calc(100dvh - 150px));
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 150px);
+  margin: 0;
+  object-fit: contain;
+}
+
+@media (max-width: 650px) {
+  .is-playing main {
+    padding: 8px 12px;
+  }
+
+  .is-playing header {
+    padding-bottom: 8px;
+  }
+
+  .is-playing #maze-screen {
+    padding-top: 8px;
+  }
+
+  .is-playing .scoreboard {
+    gap: 8px;
+    font-size: 9px;
+  }
+
+  .is-playing .scoreboard strong {
+    font-size: 16px;
+  }
+
+  .is-playing .maze-board #maze {
+    width: min(100%, calc(100dvh - 130px));
+    max-height: calc(100dvh - 130px);
+  }
+
+  .maze-play-button {
+    padding: 16px 26px;
+    font-size: 15px;
+  }
+}
