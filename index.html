@@ -3,63 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PacMan: Web</title>
+  <title>Welcome to Pacman</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
 </head>
+
 <body>
-  <main>
-    <header><a class="brand" href="index.html"><span class="pac" aria-hidden="true"></span>PACMAN</a><button
-  id="mute-toggle"
-  class="mute-toggle"
-  type="button"
-  aria-label="Mute sound"
-  aria-pressed="false"
->
-  Mute
-</button></header>
-    <section id="home" aria-labelledby="title">
+  <main id="welcome" class="welcome">
+    <div class="welcome-animation" aria-hidden="true">
+      <div class="pellets"></div>
+      <div class="moving-pacman"><span class="welcome-pacman"></span></div>
+    </div>
 
-      <h1 id="title">PACMAN: Web</h1>
-      <p id="intro" class="intro">Relive the classic game with this web app.<br>Go solo or challenge a friend on the same screen.</p>
-      <div class="modes pixel-font">
-        <button class="mode" data-mode="single"><span class="number">#01 / SOLO</span><span class="mode-title">Single player <span aria-hidden="true">↗</span></span><span class="description">You, the maze, and four ghosts.<br>Collect food. Stay alive.</span><span class="action pixel-font">CHOOSE SOLO →</span></button>
-        <button class="mode" data-mode="versus"><span class="number">#02 / VERSUS</span><span class="mode-title">Two players <span aria-hidden="true">↗</span></span><span class="description">One maze. Two rivals. Two minutes.<br>Survive longest; food breaks the tie.</span><span class="action pixel-font">CHOOSE VERSUS →</span></button>
-      </div>
-      <div class="bottom"><span><span class="status-dot"></span> SHARED SCREEN · LOCAL PLAY</span><span>PHONE CONTROLLERS COMING NEXT</span></div>
-    </section>
-    <section id="setup" class="pixel-font" hidden aria-labelledby="setup-title">
-      <button id="back" class="back">← Back to modes</button>
-      <p class="eyebrow">GET READY</p><h1 id="setup-title" tabindex="-1">Solo run.</h1>
-      <p id="rules" class="intro"></p>
-      <div id="players" class="players"></div>
-      <p class="notice">Phone connection is skipped for this preview.</p>
-      <button id="next" class="start">Next →</button>
-    </section>
-    <section id="maze-screen" hidden aria-labelledby="maze-title">
-      <button id="maze-back" class="back">← Back to setup</button>
-      <div class="maze-heading"><h2 id="maze-title" tabindex="-1">Maze</h2><span id="game-mode" class="eyebrow"></span></div>
-      <div class="scoreboard"><span>PLAYER 1 <strong>0000</strong></span><span id="timer">TIME <strong>02:00</strong></span><span id="p2-score">PLAYER 2 <strong>0000</strong></span></div>
-      <canvas id="maze" role="img" aria-label="Static maze preview with pellets, four ghosts and player starting positions"></canvas>
-      <p class="notice">Maze preview. Movement and ghost behaviour will be added next.</p>
-    </section>
-    <footer><span class="music-credit">
-  Music:
-  <a href="https://opengameart.org/content/title-theme-8-bit-style">
-    Title Theme (8-Bit Style)
-  </a>
-  by Kat —
-  <a href="https://creativecommons.org/licenses/by/4.0/">
-    CC BY 4.0
-  </a>
-</span><div class="ghosts" aria-label="Four hunters"><i style="--color:#ff646a"></i><i style="--color:#ff9acb"></i><i style="--color:#65e2ec"></i><i style="--color:#ffb45e"></i></div></footer>
+    <h1>Welcome to<br>Pacman.</h1>
+
+    <p>The maze is waiting.</p>
+
+    <button id="play" class="play-button" type="button" disabled>
+      Loading…
+    </button>
   </main>
-  <audio id="menu-music" loop preload="auto">
-  <source src="Audio/MenuTheme.wav" type="audio/wav">
-</audio>
-</body>
 
+  <iframe
+    id="game"
+    src="game.html"
+    title="Pacman game"
+    allow="autoplay"
+    hidden
+  ></iframe>
+
+  <script>
+    const playButton = document.querySelector('#play');
+    const welcome = document.querySelector('#welcome');
+    const game = document.querySelector('#game');
+
+    game.addEventListener('load', () => {
+      playButton.disabled = false;
+      playButton.textContent = "Let's Play →";
+    });
+
+    playButton.addEventListener('click', () => {
+      const gameDocument = game.contentDocument;
+      const music = gameDocument.querySelector('#menu-music');
+
+      // Start music directly from this user click.
+      if (music) {
+        music.play().catch(error => {
+          console.debug('Music could not start:', error);
+        });
+      }
+
+      // Activate the existing menu music logic in app.js.
+      gameDocument.dispatchEvent(
+        new game.contentWindow.MouseEvent('click', {
+          bubbles: true
+        })
+      );
+
+      welcome.hidden = true;
+      game.hidden = false;
+      game.contentWindow.focus();
+    });
+  </script>
+</body>
 </html>
